@@ -17,13 +17,12 @@ const calculateResult = (num1, num2, operation) => {
     }
 }
 
-const memorySwitch = (currentTotal, memOp) => {
-    console.log(memOp)
+const memorySwitch = (currentTotal, memOp, currentMem) => {
     switch(memOp) {
         case("m+"):
             return currentTotal;
         case("mr"):
-            return currentTotal + state.memory;
+            return currentTotal + currentMem;
         case("mc"):
             return 0;
     }
@@ -58,7 +57,7 @@ const reducer = (state, action) => {
         case(SET_MEMORY):
             return ({
                 ...state,
-                memory: memorySwitch(state.total, action.payload)
+                memory: memorySwitch(state.total, action.payload, state.memory)
             })
             
         default:
